@@ -16,6 +16,6 @@ describe('gaussDisparate', () => {
 	
 	test('returns an integer between 0-6 that relates to a day of the week incrementing by one starting at 0 = "Sunday"', () => {
 		const w = gaussDisparate(10, 4, 1999)[2];
-		expect(w).toEqual(6);
+		expect(w).toEqual("Saturday");
 	}); 
 });
