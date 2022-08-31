@@ -10,3 +10,6 @@ export const gaussDisparate = function(d, m, Y){ //'d': day of month (1 to 31). 
 
 };
 
+// 'A'=year number, 'M'= month, 'D' = day.  'm' = month-offset (see 'table of month offsets'). 
+// w = R(D + m +  5*R((A-1)%4)  +  4R((A-1)%100)  +  6R((A-1)%400)) % 7
+// w = ((D%7) + (m%7) + {[5*((A-1)%4)]%7}  +  {[4*((A-1)%100)]%7}  +  {[6*((A-1)%400)]%7}) %7 
