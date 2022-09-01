@@ -1,21 +1,13 @@
-import { gaussDisparate } from "./../src/daycalc.js";
+import { gaussAlg } from "./../src/daycalc.js";
 
-describe('gaussDisparate', () => {
-
-	test('holds "c" (century) variable that is Y divided by 100 (parsed to an integer)', () => {
-		const c = gaussDisparate(10, 4, 1999)[0];
-		console.log(c);
-		expect(c).toEqual(19);
+describe('gaussAlg', () => {
+	test("returns an index from monOffsetByLeapYr if a Leap-Year is input for 'Y'", () => {
+		const m = gaussAlg(4, 10, 2000)[0]; 
+		expect(m).toEqual(0); 
 	});
 
-	test('holds "y" which is Y minus the result of "c" multiplied by 100', () => {
-		const y = gaussDisparate(10, 4, 1999)[1];
-		console.log(y);
-		expect(y).toEqual(99);
-	});
-	
 	test('returns an integer between 0-6 that relates to a day of the week incrementing by one starting at 0 = "Sunday"', () => {
-		const w = gaussDisparate(10, 4, 1999)[2];
+		const w = gaussAlg(4, 10, 1999)[1];
 		expect(w).toEqual("Saturday");
-	}); 
+	});
 });

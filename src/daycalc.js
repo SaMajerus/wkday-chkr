@@ -1,17 +1,24 @@
-export const gaussDisparate = function(d, m, Y){ //'d': day of month (1 to 31).  'm': month (1=Jan, 2=Feb, ..., 12=December).  'Y': 4-digit year. 
-	let c = parseInt(Y / 100);
-	let y = Y - (100*c).toFixed(); //last two digits of Y
-	let w = parseInt(((d + (2.6*m -0.2) + y + (y/4) + (c/4) - (2*c)) % 7).toFixed());  //0=Sunday, 1=Monday, ..., 6=Saturday. 
-	console.log("w = " + w);
-	let resultArray = [c, y, w];
+export const gaussAlg = function(M, d, Y){  //'d': day of month (1 to 31).  'M': month (1=Jan, 2=Feb, ..., 12=Dec).  'Y': 4-digit year #. 
+	let m; //Stores month-offset value based on given 'M' and 'Y' values. 
+	let monthOffsetCommonYrs = [0,3,3,6,1,4,6,2,5,0,3,5];  //monthOffsetCommonYrs[0] = Jan, [1]=Feb, ...
+	let monthOffsetLeapYrs = [0,3,4,0,2,5,0,3,6,1,4,6];  //Indices follow the same scheme as above. 
+
+	if (Y%4 === 0) { //"If 4-digit year-number 'Y' is a leap year" 
+		m = monthOffsetLeapYrs[M-1]; 
+	} else { 
+		m = monthOffsetCommonYrs[M-1]; 
+	}; 
+	const w = ((d%7) + (m%7) + ((5*((Y-1)%4))%7)  +  ((4*((Y-1)%100))%7)  +  ((6*((Y-1)%400))%7))%7;  //0=Sunday, 1=Monday, ..., 6=Saturday.
+	console.log("w = " + w); 
+
+	let resultArray = [m, w];
 	let wkdayInd = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
-	resultArray[2] = wkdayInd[w]; 
-//Month-offsets (copied from table in Wikipedia article [comes before worked examples of Gauss's Algorithm])
-	let monthOffsetCommonYrs = [0,3,3,6,1,4,6,2,5,0,3,5];  //index 0 = Jan, 1=Feb, ...
-	let monthOffsetLeapYrs = [0,3,4,0,2,5,0,3,6,1,4,6];  //Leap year is when:  (A%4) = 0. 
-
+	resultArray[1] = wkdayInd[w]; 
+	
+	//Month-offsets (copied from table in Wikipedia article [comes before worked examples of Gauss's Algorithm]:  https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Gauss's_algorithm)
+	
 	return resultArray; 
-
+	//return resultArray[1];
 };
 
 // 'A'=year number, 'M'= month, 'D' = day.  'm' = month-offset (see 'table of month offsets'). 
@@ -19,4 +26,5 @@ export const gaussDisparate = function(d, m, Y){ //'d': day of month (1 to 31). 
 // w = ((D%7) + (m%7) + {[5*((A-1)%4)]%7}  +  {[4*((A-1)%100)]%7}  +  {[6*((A-1)%400)]%7}) %7 
 
 /* It works! */
+// let w = parseInt(((d + (2.6*m -0.2) + y + (y/4) + (c/4) - (2*c)) % 7).toFixed());  //0=Sunday, 1=Monday, ..., 6=Saturday. 
 // const w = ((D%7) + (m%7) + ((5*((A-1)%4))%7)  +  ((4*((A-1)%100))%7)  +  ((6*((A-1)%400))%7))%7;  
