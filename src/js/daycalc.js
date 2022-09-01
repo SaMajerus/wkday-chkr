@@ -1,13 +1,17 @@
 /*     Business Logic     */
 export const gaussAlg = function(M, d, Y){  //'d': day of month (1 to 31).  'M': month (1=Jan, 2=Feb, ..., 12=Dec).  'Y': 4-digit year #. 
+	console.log("gaussAlg function-- 'M' parameter:  " + M); 
+	console.log("gaussAlg function-- 'd' parameter:  " + d);
+	console.log("gaussAlg function-- 'Y' parameter:  " + Y);
+
 	let m; //Stores month-offset value based on given 'M' and 'Y' values. 
 	let monthOffsetCommonYrs = [0,3,3,6,1,4,6,2,5,0,3,5];  //monthOffsetCommonYrs[0] = Jan, [1]=Feb, ...
 	let monthOffsetLeapYrs = [0,3,4,0,2,5,0,3,6,1,4,6];  //Indices follow the same scheme as above. 
 
 	if (Y%4 === 0) { //"If 4-digit year-number 'Y' is a leap year" 
-		m = monthOffsetLeapYrs[M-1]; 
+		m = monthOffsetLeapYrs[M]; 
 	} else { 
-		m = monthOffsetCommonYrs[M-1]; 
+		m = monthOffsetCommonYrs[M]; 
 	}; 
 	const w = ((d%7) + (m%7) + ((5*((Y-1)%4))%7)  +  ((4*((Y-1)%100))%7)  +  ((6*((Y-1)%400))%7))%7;  //0=Sunday, 1=Monday, ..., 6=Saturday.
 	console.log("w = " + w); 
