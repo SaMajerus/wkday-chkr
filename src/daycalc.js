@@ -1,3 +1,4 @@
+/*     Business Logic     */
 export const gaussAlg = function(M, d, Y){  //'d': day of month (1 to 31).  'M': month (1=Jan, 2=Feb, ..., 12=Dec).  'Y': 4-digit year #. 
 	let m; //Stores month-offset value based on given 'M' and 'Y' values. 
 	let monthOffsetCommonYrs = [0,3,3,6,1,4,6,2,5,0,3,5];  //monthOffsetCommonYrs[0] = Jan, [1]=Feb, ...
