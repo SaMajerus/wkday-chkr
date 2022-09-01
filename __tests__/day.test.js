@@ -1,4 +1,4 @@
-import { gaussAlg } from "./../src/daycalc.js";
+import { gaussAlg } from "./../src/js/daycalc.js";
 
 describe('gaussAlg', () => {
 	test("returns an index from monOffsetByLeapYr if a Leap-Year is input for 'Y'", () => {
